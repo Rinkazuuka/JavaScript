@@ -2,8 +2,21 @@
 <html>
     <head>
         <title>Formularz osobowy</title>
+        <link rel="stylesheet" href="style.css">
     </head>
     <body>
+        <table>
+            <tbody>
+            <tr><td>Poniedziałek</td></tr>
+            <tr><td>Wtorek</td></tr>
+            <tr><td>Środa</td></tr>
+            <tr><td>Czwartek</td></tr>
+            <tr><td>Piątek</td></tr>
+            <tr><td>Sobota</td></tr>
+            <tr><td>Niedziela</td></tr>
+            </tbody>
+        </table>
+            
         <form name="user_data">
             <table>
                 <tr>
@@ -11,22 +24,39 @@
                     <td><input type="text" name="imie"></td>
                 </tr>
                 <tr>
+                    <td><span class="blad" id="blad_imie"></span></td>
+                </tr>
+
+                <tr>
                     <td>Wykształcenie</td>
                     <td>
-                        <input name="wyksztalcenie" value="wyksztalcenie_p" checked type="radio" />podstawowe<br/>
-                        <input name="wyksztalcenie" value="wyksztalcenie_s" type="radio" />średnie </br>
-                    <input name="wyksztalcenie" value="wyksztalcenie_w" type="radio" />wyższe
+                        <input id="wyksztalcenie_p" name="wyksztalcenie" value="wyksztalcenie_p"  type="radio" onclick="visibility(this.id)" />podstawowe<br/>
+                        <input id="wyksztalcenie_s" name="wyksztalcenie" value="wyksztalcenie_s" type="radio" onclick="visibility(this.id)"/>średnie </br>
+                        <input id="wyksztalcenie_w" name="wyksztalcenie" value="wyksztalcenie_w" type="radio" onclick="visibility(this.id)"/>wyższe
                     </td>
                 </tr>
                     <tr><td>E-mail</td><td><input type="text" name="email"></td></tr>
-                    <tr><td>Kod pocztowy</td><td><input type="text" name="kod"></td></tr>
-                    <tr><td>Wiadomość</td><td><textarea rows="6" cols="17" name="wiadomosc"></textarea>
-                    </td></tr>
-                    <tr><td colspan="2"><input type="submit" value="Wyślij" onclick="weryfikacja(this.form)"></td></tr>
+
+                    <tr><td><span class="blad" id="blad_email"></span></td></tr>
+
+                    <tr id="kod"><span><td>Kod pocztowy</td><td><input type="text" name="kod"></td></span></tr>
+
+                    <tr><td><span class="blad" id="blad_kod"></span></td></tr>
+
+                    <tr>
+                        <td>Wiadomość</td>
+                        <td><textarea rows="6" cols="17" name="wiadomosc" onkeyup="licznik(this.form.wiadomosc, document.getElementById('zostało'), 150)"></textarea></td>
+                    </tr>
+                    <tr><td>Pozostało <span id="zostało">150</span> znaków</td></tr>
+
+                    <tr><td><span class="blad" id="blad_wiadomosc"></span></td></tr>
+
+                    <tr><td colspan="2"><input type="submit" value="Wyślij" onclick="weryfikacja(this.form); return false"></td></tr>
                     </td>
                 </tr>
             </table>
         </form>
+
     <script src="code.js"></script>
     </body>
 </html>
